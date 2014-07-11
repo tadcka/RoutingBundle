@@ -1,0 +1,25 @@
+{
+    "name":         "tadcka/routing-bundle",
+    "homepage":     "https://github.com/tadcka/RoutingBundle",
+    "description":  "Routing bundle on Symfony2",
+    "keywords":     ["routing", "cmf routing"],
+    "type":         "symfony-bundle",
+    "license":      "MIT",
+    "authors": [
+        {
+            "name":   "Tadas Gliaubicas",
+            "email":  "tadcka89@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle" : ">=2.3",
+        "symfony-cmf/routing": "~1.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tadcka\\Bundle\\SitemapBundle\\": ""
+        }
+    }
+}
