@@ -40,6 +40,9 @@ public function registerBundles()
 }
 ```
 
+[1. Configure the TadckaRoutingBundle](https://github.com/tadcka/RoutingBundle/blob/master/Resources/doc/Config.md)
+[2. Doctrine ORM Route class](https://github.com/tadcka/RoutingBundle/blob/master/Resources/doc/ORM.md)
+
 License
 -------
 
