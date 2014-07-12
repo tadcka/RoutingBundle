@@ -88,6 +88,10 @@ class RouteProvider implements RouteProviderInterface
      */
     public function getRoutesByNames($names)
     {
-        return $this->routeManager->findByNames($names);
+        if (null !== $names && is_array($names)) {
+            return $this->routeManager->findByNames($names);
+        }
+
+        return array();
     }
 }
