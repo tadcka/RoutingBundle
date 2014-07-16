@@ -1,6 +1,10 @@
 RoutingBundle
 =============
 
+[![Build Status](https://scrutinizer-ci.com/g/tadcka/RoutingBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/tadcka/RoutingBundle/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/tadcka/RoutingBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/tadcka/RoutingBundle/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/tadcka/RoutingBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/tadcka/RoutingBundle/?branch=master)
+
 Routing bundle integrating cmf routing component.
 
 ## Installation
