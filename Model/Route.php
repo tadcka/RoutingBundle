@@ -62,8 +62,6 @@ abstract class Route extends SymfonyRoute implements RouteInterface
         return $this->getId();
     }
 
-
-
     /**
      * {@inheritdoc}
      */
