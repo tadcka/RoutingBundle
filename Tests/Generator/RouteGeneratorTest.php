@@ -35,6 +35,12 @@ class RouteGeneratorTest extends \PHPUnit_Framework_TestCase
             $generator->generateRouteFromText('  ĄčĘėĮšŲūŽ  ')
         );
 
+
+        $this->assertEquals(
+            '/aceei-suuz',
+            $generator->generateRouteFromText('  ĄčĘėĮ                                               šŲūŽ  ')
+        );
+
         $this->assertEquals(
             '/a-ceei-su-uz',
             $generator->generateRouteFromText('  Ą..čĘėĮ/šŲ..ūŽ/  ')

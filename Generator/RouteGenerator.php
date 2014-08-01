@@ -53,7 +53,7 @@ class RouteGenerator
      *
      * @param string $text
      *
-     * @return string
+     * @return null|string
      */
     public function generateUniqueRouteFromText($text)
     {
@@ -70,6 +70,8 @@ class RouteGenerator
 
             return $route;
         }
+
+        return null;
     }
 
     /**
