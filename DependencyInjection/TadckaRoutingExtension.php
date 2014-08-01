@@ -40,7 +40,7 @@ class TadckaRoutingExtension extends Extension
         if (!in_array(strtolower($config['db_driver']), array('mongodb', 'orm'))) {
             throw new \InvalidArgumentException(sprintf('Invalid db driver "%s".', $config['db_driver']));
         }
-        $loader->load('driver/' . sprintf('%s.xml', $config['db_driver']));
+        $loader->load('db_driver/' . sprintf('%s.xml', $config['db_driver']));
 
         $container->setParameter('tadcka_routing.model.route.class', $config['class']['model']['route']);
 

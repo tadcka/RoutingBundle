@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="tadcka_routing.provider.route.class">Tadcka\Bundle\RoutingBundle\Provider\RouteProvider</parameter>
         <parameter key="tadcka_routing.candidates.class">Symfony\Cmf\Component\Routing\Candidates\Candidates</parameter>
+        <parameter key="tadcka_routing.generator.route.class">Tadcka\Bundle\RoutingBundle\Generator\RouteGenerator</parameter>
     </parameters>
 
     <services>
@@ -19,6 +20,11 @@
 
         <!--Cmf routing candidates-->
         <service id="tadcka_routing.candidates" class="%tadcka_routing.candidates.class%" />
+
+        <!--Route generator-->
+        <service id="tadcka_routing.generator.route" class="%tadcka_routing.generator.route.class%">
+            <argument type="service" id="tadcka_routing.manager.route" />
+        </service>
 
     </services>
 
