@@ -58,4 +58,14 @@ interface RouteInterface extends RouteObjectInterface
      * @return string
      */
     public function getRoutePattern();
+
+    /**
+     * Sets a default value.
+     *
+     * @param string $name    A variable name
+     * @param mixed  $default The default value
+     *
+     * @return Route The current Route instance
+     */
+    public function setDefault($name, $default);
 }
