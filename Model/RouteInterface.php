@@ -68,4 +68,11 @@ interface RouteInterface extends RouteObjectInterface
      * @return Route The current Route instance
      */
     public function setDefault($name, $default);
+
+    /**
+     * Returns the defaults.
+     *
+     * @return array The defaults
+     */
+    public function getDefaults();
 }
