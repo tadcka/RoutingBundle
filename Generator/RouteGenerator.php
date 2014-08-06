@@ -12,7 +12,9 @@
 namespace Tadcka\Bundle\RoutingBundle\Generator;
 
 use Ferrandini\Urlizer;
+use Tadcka\Bundle\RoutingBundle\Exception\RuntimeException;
 use Tadcka\Bundle\RoutingBundle\Model\Manager\RouteManagerInterface;
+use Tadcka\Bundle\RoutingBundle\Model\RouteInterface;
 
 /**
  * @author Tadas Gliaubicas <tadcka89@gmail.com>
@@ -49,24 +51,26 @@ class RouteGenerator
     }
 
     /**
-     * Generate unique route from text.
+     * Generate unique route.
      *
-     * @param string $text
+     * @param RouteInterface $route
      *
-     * @return null|string
+     * @return null|RouteInterface
      */
-    public function generateUniqueRouteFromText($text)
+    public function generateUniqueRoute(RouteInterface $route)
     {
-        $originalRoute = $this->generateRouteFromText($text);
+        $originalRoutePattern = $this->generateRouteFromText($route->getRoutePattern());
 
-        if ($originalRoute) {
+        if ($originalRoutePattern) {
             $key = 0;
-            $route = $this->normalizeRoute($originalRoute);
+            $routePattern = $this->normalizeRoute($originalRoutePattern);
 
-            while ($this->hasRoute($route)) {
+            while ($this->hasRoute($routePattern, $route->getName())) {
                 $key++;
-                $route = $originalRoute . '-' . $key;
+                $routePattern = $originalRoutePattern . '-' . $key;
             }
+
+            $route->setRoutePattern($routePattern);
 
             return $route;
         }
@@ -77,13 +81,22 @@ class RouteGenerator
     /**
      * Has route.
      *
-     * @param string $route
+     * @param string $routePattern
+     * @param string $routeName
      *
      * @return bool
+     *
+     * @throws RuntimeException
      */
-    private function hasRoute($route)
+    private function hasRoute($routePattern, $routeName)
     {
-        return (null !== $this->routeManager->findByRoutePattern($route));
+        if (!$routeName) {
+            throw new RuntimeException('Route name is empty!');
+        }
+
+        $route = $this->routeManager->findByRoutePattern($routePattern);
+
+        return ((null !== $route) && ($routeName !== $route->getName()));
     }
 
     /**

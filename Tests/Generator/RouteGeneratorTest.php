@@ -13,6 +13,7 @@ namespace Tadcka\Bundle\RoutingBundle\Tests\Generator;
 
 use Tadcka\Bundle\RoutingBundle\Generator\RouteGenerator;
 use Tadcka\Bundle\RoutingBundle\Tests\Mock\Model\Manager\MockRouteManager;
+use Tadcka\Bundle\RoutingBundle\Tests\Mock\Model\MockRoute;
 
 class RouteGeneratorTest extends \PHPUnit_Framework_TestCase
 {
@@ -41,32 +42,50 @@ class RouteGeneratorTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testGenerateUniqueRouteFromText()
+    /**
+     * @expectedException \Tadcka\Bundle\RoutingBundle\Exception\RuntimeException
+     */
+    public function testGenerateUniqueRouteException()
     {
         $routeManager = new MockRouteManager();
         $generator = new RouteGenerator($routeManager);
 
+        $mockRoute = new MockRoute();
+        $mockRoute->setRoutePattern($generator->generateRouteFromText('Kiškis ėjo takeliu ir sutiko mešką'));
+        $generator->generateUniqueRoute($mockRoute);
+    }
+
+    public function testGenerateUniqueRoute()
+    {
+        $routeManager = new MockRouteManager();
+        $generator = new RouteGenerator($routeManager);
+
+        $mockRoute = new MockRoute();
+        $mockRoute->setName('test');
+        $mockRoute->setRoutePattern($generator->generateRouteFromText('Kiškis ėjo takeliu ir sutiko mešką'));
         $this->assertEquals(
             '/kiskis-ejo-takeliu-ir-sutiko-meska',
-            $generator->generateUniqueRouteFromText('Kiškis ėjo takeliu ir sutiko mešką')
+            $generator->generateUniqueRoute($mockRoute)->getRoutePattern()
         );
 
         $route = $routeManager->create();
         $route->setRoutePattern('kiskis-ejo-takeliu-ir-sutiko-meska');
         $routeManager->add($route);
+        $mockRoute->setRoutePattern($generator->generateRouteFromText('Kiškis ėjo takeliu ir sutiko mešką/.'));
 
         $this->assertEquals(
             '/kiskis-ejo-takeliu-ir-sutiko-meska-1',
-            $generator->generateUniqueRouteFromText('Kiškis ėjo takeliu ir sutiko mešką/.')
+            $generator->generateUniqueRoute($mockRoute)->getRoutePattern()
         );
 
         $route = $routeManager->create();
         $route->setRoutePattern('kiskis-ejo-takeliu-ir-sutiko-meska-1');
         $routeManager->add($route);
+        $mockRoute->setRoutePattern($generator->generateRouteFromText('Kiškis ėjo takeliu ir sutiko mešką/.'));
 
         $this->assertEquals(
             '/kiskis-ejo-takeliu-ir-sutiko-meska-2',
-            $generator->generateUniqueRouteFromText('Kiškis ėjo takeliu ir sutiko mešką/.')
+            $generator->generateUniqueRoute($mockRoute)->getRoutePattern()
         );
     }
 }
