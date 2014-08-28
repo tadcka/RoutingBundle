@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Tadcka package.
+ * This file is part of the Evispa package.
  *
- * (c) Tadcka <tadcka89@gmail.com>
+ * (c) Evispa <info@evispa.lt>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,15 +13,15 @@ namespace Tadcka\Bundle\RoutingBundle\Doctrine\EntityManager;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Tadcka\Bundle\RoutingBundle\Model\Manager\RouteManager as BaseRouteManager;
-use Tadcka\Bundle\RoutingBundle\Model\RouteInterface;
+use Tadcka\Bundle\RoutingBundle\Model\Manager\RedirectRouteManager as BaseRedirectRouteManager;
+use Tadcka\Bundle\RoutingBundle\Model\RedirectRouteInterface;
 
 /**
- * @author Tadas Gliaubicas <tadcka89@gmail.com>
+ * @author Tadas Gliaubicas <tadas@evispa.lt>
  *
- * @since 7/1/14 11:10 PM
+ * @since 8/28/14 2:31 PM
  */
-class RouteManager extends BaseRouteManager
+class RedirectRouteManager extends BaseRedirectRouteManager
 {
     /**
      * @var EntityManager
@@ -54,49 +54,9 @@ class RouteManager extends BaseRouteManager
     /**
      * {@inheritdoc}
      */
-    public function findByName($name)
+    public function add(RedirectRouteInterface $redirectRoute, $save = false)
     {
-        return $this->repository->findOneBy(array('name' => $name));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function findByNames(array $names)
-    {
-        return $this->repository->findBy(array('name' => $names));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function findByRoutePattern($routePattern)
-    {
-        return $this->repository->findOneBy(array('routePattern' => $routePattern));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function findByRoutePatterns(array $routePatterns)
-    {
-        return $this->repository->findBy(array('routePattern' => $routePatterns));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function all()
-    {
-        return $this->repository->findAll();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function add(RouteInterface $route, $save = false)
-    {
-        $this->em->persist($route);
+        $this->em->persist($redirectRoute);
         if (true === $save) {
             $this->save();
         }
@@ -105,9 +65,9 @@ class RouteManager extends BaseRouteManager
     /**
      * {@inheritdoc}
      */
-    public function remove(RouteInterface $route, $save = false)
+    public function remove(RedirectRouteInterface $redirectRoute, $save = false)
     {
-        $this->em->remove($route);
+        $this->em->remove($redirectRoute);
         if (true === $save) {
             $this->save();
         }
@@ -137,3 +97,4 @@ class RouteManager extends BaseRouteManager
         return $this->class;
     }
 }
+ 

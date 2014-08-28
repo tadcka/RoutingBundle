@@ -43,8 +43,10 @@ class TadckaRoutingExtension extends Extension
         $loader->load('db_driver/' . sprintf('%s.xml', $config['db_driver']));
 
         $container->setParameter('tadcka_routing.model.route.class', $config['class']['model']['route']);
+        $container->setParameter('tadcka_routing.model.redirect_route.class', $config['class']['model']['redirect_route']);
 
         $container->setAlias('tadcka_routing.manager.route', $config['route_manager']);
+        $container->setAlias('tadcka_routing.manager.redirect_route', $config['redirect_route_manager']);
 
         $container->setParameter('tadcka_routing.chain_router.enabled', $config['chain_router']['enabled']);
         $container->setParameter('tadcka_routing.dynamic_router.priority', $config['dynamic_router']['priority']);

@@ -32,12 +32,17 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('db_driver')->cannotBeOverwritten()->isRequired()->end()
-                ->scalarNode('route_manager')->defaultValue('tadcka_routing.manager.route.default')->cannotBeEmpty()->end()
+                ->scalarNode('route_manager')->defaultValue('tadcka_routing.manager.route.default')
+                    ->cannotBeEmpty()->end()
+                ->scalarNode('redirect_route_manager')->defaultValue('tadcka_routing.manager.redirect_route.default')
+                    ->cannotBeEmpty()->end()
+
                 ->arrayNode('class')->isRequired()
                     ->children()
                         ->arrayNode('model')->isRequired()
                             ->children()
                                 ->scalarNode('route')->isRequired()->end()
+                                ->scalarNode('redirect_route')->isRequired()->end()
                             ->end()
                         ->end()
                     ->end()

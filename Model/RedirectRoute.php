@@ -11,73 +11,135 @@
 
 namespace Tadcka\Bundle\RoutingBundle\Model;
 
-use Symfony\Cmf\Component\Routing\RedirectRouteInterface;
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
-
 /**
  * @author Tadas Gliaubicas <tadcka89@gmail.com>
  *
  * @since 7/1/14 10:54 PM
  */
-class RedirectRoute extends Route implements RedirectRouteInterface
+abstract class RedirectRoute extends Route implements RedirectRouteInterface
 {
     /**
-     * Get the absolute uri to redirect to external domains.
+     * Absolute uri to redirect to.
      *
-     * If this is non-empty, the other methods won't be used.
+     * @var string
+     */
+    protected $uri;
+
+    /**
+     * The name of a target route (for use with standard symfony routes).
      *
-     * @return string target absolute uri
+     * @var string
+     */
+    protected $routeName;
+
+    /**
+     * Target route to redirect to different dynamic route.
+     *
+     * @var RouteInterface
+     */
+    protected $routeTarget;
+
+    /**
+     * Whether this is a permanent redirect. Defaults to true.
+     *
+     * @var bool
+     */
+    protected $permanent = true;
+
+    /**
+     * Route parameters.
+     *
+     * @var array
+     */
+    protected $parameters = array();
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUri($uri)
+    {
+        $this->uri = $uri;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function getUri()
     {
-        // TODO: Implement getUri() method.
+        return $this->uri;
     }
 
     /**
-     * Get the target route document this route redirects to.
-     *
-     * If non-null, it is added as route into the parameters, which will lead
-     * to have the generate call issued by the RedirectController to have
-     * the target route in the parameters.
-     *
-     * @return RouteObjectInterface the route this redirection points to
+     * {@inheritdoc}
+     */
+    public function setRouteTarget(RouteInterface $routeTarget)
+    {
+        $this->routeTarget = $routeTarget;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function getRouteTarget()
     {
-        // TODO: Implement getRouteTarget() method.
+        return $this->routeTarget;
     }
 
     /**
-     * Get the name of the target route for working with the symfony standard
-     * router.
-     *
-     * @return string target route name
+     * {@inheritdoc}
+     */
+    public function setRouteName($routeName)
+    {
+        $this->routeName = $routeName;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function getRouteName()
     {
-        // TODO: Implement getRouteName() method.
+        return $this->routeName;
     }
 
     /**
-     * Whether this should be a permanent or temporary redirect
-     *
-     * @return boolean
+     * {@inheritdoc}
+     */
+    public function setPermanent($permanent)
+    {
+        $this->permanent = $permanent;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function isPermanent()
     {
-        // TODO: Implement isPermanent() method.
+        return $this->permanent;
     }
 
     /**
-     * Get the parameters for the target route router::generate()
-     *
-     * Note that for the DynamicRouter, you return the target route
-     * document as field 'route' of the hashmap.
-     *
-     * @return array Information to build the route
+     * {@inheritdoc}
      */
     public function getParameters()
     {
-        // TODO: Implement getParameters() method.
+        return $this->parameters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setParameters(array $parameters)
+    {
+        $this->parameters = $parameters;
+
+        return $this;
     }
 }

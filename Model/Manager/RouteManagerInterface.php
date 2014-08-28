@@ -79,12 +79,12 @@ interface RouteManagerInterface
     public function add(RouteInterface $route, $save = false);
 
     /**
-     * Delete route from persistent layer.
+     * Remove route from persistent layer.
      *
      * @param RouteInterface $route
      * @param bool $save
      */
-    public function delete(RouteInterface $route, $save = false);
+    public function remove(RouteInterface $route, $save = false);
 
     /**
      * Save persistent layer.
