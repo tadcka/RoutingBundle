@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Evispa package.
+ * This file is part of the Tadcka package.
  *
- * (c) Evispa <info@evispa.lt>
+ * (c) Tadcka <tadcka89@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,7 +14,7 @@ namespace Tadcka\Bundle\RoutingBundle\Model;
 use Symfony\Cmf\Component\Routing\RedirectRouteInterface as BaseRedirectRouteInterface;
 
 /**
- * @author Tadas Gliaubicas <tadas@evispa.lt>
+ * @author Tadas Gliaubicas <tadcka89@gmail.com>
  *
  * @since 8/28/14 2:17 PM
  */

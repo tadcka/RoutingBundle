@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Evispa package.
+ * This file is part of the Tadcka package.
  *
- * (c) Evispa <info@evispa.lt>
+ * (c) Tadcka <tadcka89@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -17,7 +17,7 @@ use Tadcka\Bundle\RoutingBundle\Model\Manager\RedirectRouteManager as BaseRedire
 use Tadcka\Bundle\RoutingBundle\Model\RedirectRouteInterface;
 
 /**
- * @author Tadas Gliaubicas <tadas@evispa.lt>
+ * @author Tadas Gliaubicas <tadcka89@gmail.com>
  *
  * @since 8/28/14 2:31 PM
  */
