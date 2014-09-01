@@ -83,7 +83,7 @@ class MockRouteManager extends BaseRouteManager
     /**
      * {@inheritdoc}
      */
-    public function delete(RouteInterface $route, $save = false)
+    public function remove(RouteInterface $route, $save = false)
     {
         // TODO: Implement delete() method.
     }

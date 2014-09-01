@@ -18,5 +18,8 @@ namespace Tadcka\Bundle\RoutingBundle\Tests\Manager;
  */
 class InMemoryRouteManagerTest extends \PHPUnit_Framework_TestCase
 {
-
+    public function test()
+    {
+        
+    }
 }
