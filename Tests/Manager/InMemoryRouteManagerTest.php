@@ -9,13 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Tadcka\Bundle\RoutingBundle\Exception;
+namespace Tadcka\Bundle\RoutingBundle\Tests\Manager;
 
 /**
  * @author Tadas Gliaubicas <tadcka89@gmail.com>
  *
- * @since 8/7/14 12:09 AM
+ * @since 9/1/14 8:55 PM
  */
-class RuntimeException extends \RuntimeException
+class InMemoryRouteManagerTest extends \PHPUnit_Framework_TestCase
 {
+
 }

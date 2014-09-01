@@ -43,7 +43,7 @@ class RouteGeneratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Tadcka\Bundle\RoutingBundle\Exception\RuntimeException
+     * @expectedException \Tadcka\Bundle\RoutingBundle\Exception\RoutingRuntimeException
      */
     public function testGenerateUniqueRouteException()
     {

@@ -12,7 +12,7 @@
 namespace Tadcka\Bundle\RoutingBundle\Generator;
 
 use Ferrandini\Urlizer;
-use Tadcka\Bundle\RoutingBundle\Exception\RuntimeException;
+use Tadcka\Bundle\RoutingBundle\Exception\RoutingRuntimeException;
 use Tadcka\Bundle\RoutingBundle\Model\Manager\RouteManagerInterface;
 use Tadcka\Bundle\RoutingBundle\Model\RouteInterface;
 
@@ -86,12 +86,12 @@ class RouteGenerator
      *
      * @return bool
      *
-     * @throws RuntimeException
+     * @throws RoutingRuntimeException
      */
     private function hasRoute($routePattern, $routeName)
     {
         if (!$routeName) {
-            throw new RuntimeException('Route name is empty!');
+            throw new RoutingRuntimeException('Route name is empty!');
         }
 
         $route = $this->routeManager->findByRoutePattern($routePattern);
