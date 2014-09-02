@@ -11,6 +11,9 @@
 
 namespace Tadcka\Bundle\RoutingBundle\Tests\Manager;
 
+use Tadcka\Bundle\RoutingBundle\Manager\InMemoryRouteManager;
+use Tadcka\Bundle\RoutingBundle\Tests\Mock\Model\Manager\MockRouteManager;
+
 /**
  * @author Tadas Gliaubicas <tadcka89@gmail.com>
  *
@@ -18,8 +21,29 @@ namespace Tadcka\Bundle\RoutingBundle\Tests\Manager;
  */
 class InMemoryRouteManagerTest extends \PHPUnit_Framework_TestCase
 {
-    public function test()
+    /**
+     * @var MockRouteManager
+     */
+    private $mockManager;
+
+    /**
+     * @var InMemoryRouteManager
+     */
+    private $inMemoryManager;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp()
     {
-        
+        $this->mockManager = new MockRouteManager();
+        $this->inMemoryManager = new InMemoryRouteManager($this->mockManager);
+    }
+    /**
+     * @expectedException \Tadcka\Bundle\RoutingBundle\Exception\RoutingRuntimeException
+     */
+    public function testAddMethodWithEmptyName()
+    {
+        $this->inMemoryManager->add($this->mockManager->create());
     }
 }
