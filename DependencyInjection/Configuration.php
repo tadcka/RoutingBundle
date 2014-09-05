@@ -66,6 +66,15 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
 
+                ->arrayNode('locales')
+                    ->beforeNormalization()
+                        ->ifString()
+                        ->then(function($value) { return preg_split('/\s*,\s*/', $value); })
+                    ->end()
+                    ->requiresAtLeastOneElement()
+                    ->prototype('scalar')->end()
+                ->end()
+
             ->end();
 
         return $treeBuilder;

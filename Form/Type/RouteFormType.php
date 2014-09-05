@@ -47,7 +47,7 @@ class RouteFormType extends AbstractType
             'routePattern',
             'text',
             array(
-                'label' => 'form.route.route_pattern',
+                'label' => 'form.route.uniform_resource_locator',
                 'constraints' => array(new NotBlank()),
             )
         );

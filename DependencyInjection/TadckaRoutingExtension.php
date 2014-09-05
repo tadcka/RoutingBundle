@@ -36,6 +36,7 @@ class TadckaRoutingExtension extends Extension
         $loader->load('chain_router.xml');
         $loader->load('dynamic_router.xml');
         $loader->load('form/route.xml');
+        $loader->load('helpers.xml');
 
         if (!in_array(strtolower($config['db_driver']), array('mongodb', 'orm'))) {
             throw new \InvalidArgumentException(sprintf('Invalid db driver "%s".', $config['db_driver']));
@@ -51,5 +52,7 @@ class TadckaRoutingExtension extends Extension
         $container->setParameter('tadcka_routing.chain_router.enabled', $config['chain_router']['enabled']);
         $container->setParameter('tadcka_routing.dynamic_router.priority', $config['dynamic_router']['priority']);
         $container->setParameter('tadcka_routing.router.priority', $config['router']['priority']);
+
+        $container->setParameter('tadcka_routing.locales', $config['locales']);
     }
 }

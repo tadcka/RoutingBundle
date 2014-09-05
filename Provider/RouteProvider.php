@@ -61,7 +61,6 @@ class RouteProvider implements RouteProviderInterface
         }
 
         $routes = $this->routeManager->findByRoutePatterns($candidates);
-
         foreach ($routes as $route) {
             $collection->add($route->getName(), $route);
         }

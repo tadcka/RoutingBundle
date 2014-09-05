@@ -31,6 +31,20 @@ abstract class Route extends SymfonyRoute implements RouteInterface
     protected $routePattern;
 
     /**
+     * @var string
+     */
+    protected $prefix;
+
+    /**
+     * Whether this route was changed since being last compiled.
+     *
+     * State information not persisted in storage.
+     *
+     * @var bool
+     */
+    protected $recompile = false;
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -40,14 +54,7 @@ abstract class Route extends SymfonyRoute implements RouteInterface
     }
 
     /**
-     * Get the content document this route entry stands for. If non-null,
-     * the ControllerClassMapper uses it to identify a controller and
-     * the content is passed to the controller.
-     *
-     * If there is no specific content for this url (i.e. its an "application"
-     * page), may return null.
-     *
-     * @return object the document or entity this route entry points to
+     * {@inheritdoc}
      */
     public function getContent()
     {
@@ -67,8 +74,9 @@ abstract class Route extends SymfonyRoute implements RouteInterface
      */
     public function setRoutePattern($routePattern)
     {
-        $this->routePattern = '/'.ltrim(trim($routePattern), '/');
+        $this->routePattern = '/' . ltrim(trim($routePattern), '/');
         $this->setPath($this->routePattern);
+        $this->recompile = true;
 
         return $this;
     }
@@ -82,11 +90,33 @@ abstract class Route extends SymfonyRoute implements RouteInterface
     }
 
     /**
+     * @deprecated
+     */
+    public function getPattern()
+    {
+        return $this->getPath();
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function getPath()
     {
-        return $this->routePattern;
+        return $this->prefix . $this->getRoutePattern();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPath($pattern)
+    {
+        $length = strlen($this->getPrefix());
+
+        if (strncmp($this->getPrefix(), $pattern, $length)) {
+            throw new \InvalidArgumentException();
+        }
+
+        return $this->setRoutePattern(substr($pattern, $length));
     }
 
     /**
@@ -105,5 +135,48 @@ abstract class Route extends SymfonyRoute implements RouteInterface
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPrefix($prefix)
+    {
+        $this->prefix = $prefix;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPrefix()
+    {
+        return $this->prefix;
+    }
+
+    /**
+     * Add locale.
+     *
+     * @param $defaultLocale
+     * @param array $localeRequirements
+     */
+    public function addLocale($defaultLocale, array $localeRequirements)
+    {
+        $this->prefix = '/{_locale}';
+        $this->setDefault('_locale', $defaultLocale);
+        $this->addRequirements($localeRequirements);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function compile()
+    {
+        if ($this->recompile) {
+            parent::setPath($this->getPath());
+        }
+
+        return parent::compile();
     }
 }

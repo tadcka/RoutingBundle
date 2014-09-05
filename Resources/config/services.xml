@@ -20,7 +20,9 @@
         </service>
 
         <!--Cmf routing candidates-->
-        <service id="tadcka_routing.candidates" class="%tadcka_routing.candidates.class%" />
+        <service id="tadcka_routing.candidates" class="%tadcka_routing.candidates.class%">
+            <argument>%tadcka_routing.locales%</argument>
+        </service>
 
         <!--Route generator-->
         <service id="tadcka_routing.generator.route" class="%tadcka_routing.generator.route.class%">

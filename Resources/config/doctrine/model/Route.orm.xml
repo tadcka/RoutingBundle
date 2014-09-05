@@ -20,6 +20,8 @@
 
         <field name="routePattern" column="route_pattern" type="text" nullable="true" />
 
+        <field name="prefix" column="prefix" type="string" length="255" nullable="true" />
+
     </mapped-superclass>
 
 </doctrine-mapping>
