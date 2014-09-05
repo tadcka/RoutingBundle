@@ -106,20 +106,6 @@ abstract class Route extends SymfonyRoute implements RouteInterface
     }
 
     /**
-     * {@inheritDoc}
-     */
-    public function setPath($pattern)
-    {
-        $length = strlen($this->getPrefix());
-
-        if (strncmp($this->getPrefix(), $pattern, $length)) {
-            throw new \InvalidArgumentException();
-        }
-
-        return $this->setRoutePattern(substr($pattern, $length));
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function setName($name)
@@ -165,7 +151,7 @@ abstract class Route extends SymfonyRoute implements RouteInterface
     {
         $this->prefix = '/{_locale}';
         $this->setDefault('_locale', $defaultLocale);
-        $this->addRequirements($localeRequirements);
+        $this->addRequirements(array('_locale' => implode('|', $localeRequirements)));
     }
 
     /**
