@@ -49,7 +49,6 @@ class RouteFormType extends AbstractType
             array(
                 'label' => 'form.route.uniform_resource_locator',
                 'constraints' => array(new NotBlank()),
-                'required' => false,
             )
         );
     }

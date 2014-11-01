@@ -13,8 +13,8 @@ namespace Tadcka\Bundle\RoutingBundle\Doctrine\EntityManager;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Tadcka\Bundle\RoutingBundle\Model\Manager\RouteManager as BaseRouteManager;
-use Tadcka\Bundle\RoutingBundle\Model\RouteInterface;
+use Tadcka\Component\Routing\Model\Manager\RouteManager as BaseRouteManager;
+use Tadcka\Component\Routing\Model\RouteInterface;
 
 /**
  * @author Tadas Gliaubicas <tadcka89@gmail.com>

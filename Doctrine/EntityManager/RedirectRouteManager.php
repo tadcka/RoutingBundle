@@ -13,8 +13,8 @@ namespace Tadcka\Bundle\RoutingBundle\Doctrine\EntityManager;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Tadcka\Bundle\RoutingBundle\Model\Manager\RedirectRouteManager as BaseRedirectRouteManager;
-use Tadcka\Bundle\RoutingBundle\Model\RedirectRouteInterface;
+use Tadcka\Component\Routing\Model\Manager\RedirectRouteManager as BaseRedirectRouteManager;
+use Tadcka\Component\Routing\Model\RedirectRouteInterface;
 
 /**
  * @author Tadas Gliaubicas <tadcka89@gmail.com>

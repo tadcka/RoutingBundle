@@ -31,7 +31,7 @@ class TadckaRoutingExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
         $loader->load('chain_router.xml');
         $loader->load('dynamic_router.xml');
@@ -44,7 +44,10 @@ class TadckaRoutingExtension extends Extension
         $loader->load('db_driver/' . sprintf('%s.xml', $config['db_driver']));
 
         $container->setParameter('tadcka_routing.model.route.class', $config['class']['model']['route']);
-        $container->setParameter('tadcka_routing.model.redirect_route.class', $config['class']['model']['redirect_route']);
+        $container->setParameter(
+            'tadcka_routing.model.redirect_route.class',
+            $config['class']['model']['redirect_route']
+        );
 
         $container->setAlias('tadcka_routing.manager.route', $config['route_manager']);
         $container->setAlias('tadcka_routing.manager.redirect_route', $config['redirect_route_manager']);

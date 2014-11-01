@@ -7,7 +7,7 @@
 namespace Tadcka\Bundle\AcmeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Tadcka\Bundle\RoutingBundle\Model\Route as BaseRoute;
+use Tadcka\Component\Routing\Model\Route as BaseRoute;
 
 /**
  * @ORM\Entity

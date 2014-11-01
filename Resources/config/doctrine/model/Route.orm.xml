@@ -14,7 +14,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="Tadcka\Bundle\RoutingBundle\Model\Route">
+    <mapped-superclass name="Tadcka\Component\Routing\Model\Route">
 
         <field name="name" column="name" type="string" length="255" nullable="false" unique="true" />
 
