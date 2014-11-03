@@ -13,6 +13,7 @@
 
         <!--Redirect controller-->
         <service id="tadcka_routing.redirect_controller" class="%tadcka_routing.redirect_controller.class%">
+            <argument type="service" id="tadcka_routing.manager.redirect_route" />
             <argument type="service" id="router" />
         </service>
 

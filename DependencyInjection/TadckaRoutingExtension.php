@@ -13,6 +13,7 @@ namespace Tadcka\Bundle\RoutingBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
@@ -32,30 +33,32 @@ class TadckaRoutingExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('services.xml');
-        $loader->load('chain_router.xml');
-        $loader->load('dynamic_router.xml');
+        $loader->load('chain-router.xml');
+        $loader->load('controllers.xml');
+        $loader->load('dynamic-router.xml');
+        $loader->load('form/redirect-route.xml');
         $loader->load('form/route.xml');
         $loader->load('helpers.xml');
+        $loader->load('services.xml');
 
         if (!in_array(strtolower($config['db_driver']), array('mongodb', 'orm'))) {
             throw new \InvalidArgumentException(sprintf('Invalid db driver "%s".', $config['db_driver']));
         }
         $loader->load('db_driver/' . sprintf('%s.xml', $config['db_driver']));
 
-        $container->setParameter('tadcka_routing.model.route.class', $config['class']['model']['route']);
+        $container->setParameter($this->getAlias() . '.model.route.class', $config['class']['model']['route']);
         $container->setParameter(
-            'tadcka_routing.model.redirect_route.class',
+            $this->getAlias() . '.model.redirect_route.class',
             $config['class']['model']['redirect_route']
         );
 
-        $container->setAlias('tadcka_routing.manager.route', $config['route_manager']);
-        $container->setAlias('tadcka_routing.manager.redirect_route', $config['redirect_route_manager']);
+        $container->setAlias($this->getAlias() . '.manager.route', $config['route_manager']);
+        $container->setAlias($this->getAlias() . '.manager.redirect_route', $config['redirect_route_manager']);
 
-        $container->setParameter('tadcka_routing.chain_router.enabled', $config['chain_router']['enabled']);
-        $container->setParameter('tadcka_routing.dynamic_router.priority', $config['dynamic_router']['priority']);
-        $container->setParameter('tadcka_routing.router.priority', $config['router']['priority']);
+        $container->setParameter($this->getAlias() . '.chain_router.enabled', $config['chain_router']['enabled']);
+        $container->setParameter($this->getAlias() . '.dynamic_router.priority', $config['dynamic_router']['priority']);
+        $container->setParameter($this->getAlias() . '.router.priority', $config['router']['priority']);
 
-        $container->setParameter('tadcka_routing.locales', $config['locales']);
+        $container->setParameter($this->getAlias() . '.locales', $config['locales']);
     }
 }

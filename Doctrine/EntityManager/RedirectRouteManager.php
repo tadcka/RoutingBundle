@@ -54,6 +54,14 @@ class RedirectRouteManager extends BaseRedirectRouteManager
     /**
      * {@inheritdoc}
      */
+    public function findByName($name)
+    {
+        return $this->repository->findOneBy(array('name' => $name));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function add(RedirectRouteInterface $redirectRoute, $save = false)
     {
         $this->em->persist($redirectRoute);

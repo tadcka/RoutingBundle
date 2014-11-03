@@ -9,9 +9,9 @@ Routing bundle integrating cmf routing component.
 
 ## Installation
 
-### Step 1: Download TadckaRoutingBundle using composer
+### Step 1: Download RoutingBundle using composer
 
-Add TadckaRoutingBundle in your composer.json:
+Add RoutingBundle in your composer.json:
 
 ```js
 {
