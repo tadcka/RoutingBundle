@@ -11,6 +11,7 @@
 
 namespace Tadcka\Bundle\RoutingBundle\Doctrine\EntityManager;
 
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Tadcka\Component\Routing\Model\Manager\RouteManager as BaseRouteManager;
@@ -49,6 +50,18 @@ class RouteManager extends BaseRouteManager
         $this->em = $em;
         $this->repository = $em->getRepository($class);
         $this->class = $em->getClassMetadata($class)->name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findAllNameAndPattern()
+    {
+        $qb = $this->repository->createQueryBuilder('r');
+
+        $qb->select('r.name, r.routePattern AS route_pattern');
+
+        return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
     }
 
     /**

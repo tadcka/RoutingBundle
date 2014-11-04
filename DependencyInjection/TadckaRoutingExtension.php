@@ -37,6 +37,7 @@ class TadckaRoutingExtension extends Extension
         $loader->load('dynamic-router.xml');
         $loader->load('form/redirect-route.xml');
         $loader->load('form/route.xml');
+        $loader->load('form/route-choice.xml');
         $loader->load('helpers.xml');
         $loader->load('services.xml');
 
