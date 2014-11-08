@@ -59,6 +59,8 @@ class RouteManager extends BaseRouteManager
     {
         $qb = $this->repository->createQueryBuilder('r');
 
+        $qb->where($qb->expr()->eq('r.visible', true));
+
         $qb->select('r.name, r.routePattern AS route_pattern');
 
         return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
@@ -75,9 +77,25 @@ class RouteManager extends BaseRouteManager
     /**
      * {@inheritdoc}
      */
+    public function findVisibleByName($name)
+    {
+        return $this->repository->findOneBy(array('name' => $name, 'visible' => true));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function findByNames(array $names)
     {
         return $this->repository->findBy(array('name' => $names));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findVisibleByNames(array $names)
+    {
+        return $this->repository->findBy(array('name' => $names, 'visible' => true));
     }
 
     /**
@@ -94,6 +112,14 @@ class RouteManager extends BaseRouteManager
     public function findByRoutePatterns(array $routePatterns)
     {
         return $this->repository->findBy(array('routePattern' => $routePatterns));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findVisibleByRoutePatterns(array $routePatterns)
+    {
+        return $this->repository->findBy(array('routePattern' => $routePatterns, 'visible' => true));
     }
 
     /**

@@ -16,6 +16,8 @@
 
     <mapped-superclass name="Tadcka\Component\Routing\Model\RedirectRoute">
 
+        <field name="name" column="name" type="string" length="255" nullable="false" unique="true" />
+
         <field name="uri" column="uri" type="string" length="511" nullable="true" />
 
         <field name="routeName" column="route_name" length="511" nullable="true" />

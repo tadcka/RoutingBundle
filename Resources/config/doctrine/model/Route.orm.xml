@@ -22,6 +22,8 @@
 
         <field name="prefix" column="prefix" type="string" length="255" nullable="true" />
 
+        <field name="visible" column="visible" type="boolean" nullable="false" />
+
     </mapped-superclass>
 
 </doctrine-mapping>
