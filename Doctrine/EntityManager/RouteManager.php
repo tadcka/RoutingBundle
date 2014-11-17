@@ -59,8 +59,6 @@ class RouteManager extends BaseRouteManager
     {
         $qb = $this->repository->createQueryBuilder('r');
 
-        $qb->where($qb->expr()->eq('r.visible', true));
-
         $qb->select('r.name, r.routePattern AS route_pattern');
 
         return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
