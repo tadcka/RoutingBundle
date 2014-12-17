@@ -3,7 +3,7 @@ RoutingBundle
 
 [![Build Status](https://scrutinizer-ci.com/g/tadcka/RoutingBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/tadcka/RoutingBundle/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/tadcka/RoutingBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/tadcka/RoutingBundle/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/tadcka/RoutingBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/tadcka/RoutingBundle/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/tadcka/routing-bundle/v/stable.svg)](https://packagist.org/packages/tadcka/routing-bundle) [![Total Downloads](https://poser.pugx.org/tadcka/routing-bundle/downloads.svg)](https://packagist.org/packages/tadcka/routing-bundle) [![Latest Unstable Version](https://poser.pugx.org/tadcka/routing-bundle/v/unstable.svg)](https://packagist.org/packages/tadcka/routing-bundle) [![License](https://poser.pugx.org/tadcka/routing-bundle/license.svg)](https://packagist.org/packages/tadcka/routing-bundle)
 
 Routing bundle integrating cmf routing component.
 
