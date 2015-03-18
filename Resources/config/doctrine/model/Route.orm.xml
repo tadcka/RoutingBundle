@@ -18,7 +18,7 @@
 
         <field name="name" column="name" type="string" length="255" nullable="false" unique="true" />
 
-        <field name="routePattern" column="route_pattern" type="string" nullable="true" unique="true" />
+        <field name="routePattern" column="route_pattern" type="string" length="255" nullable="true" unique="true" />
 
         <field name="prefix" column="prefix" type="string" length="255" nullable="true" />
 
