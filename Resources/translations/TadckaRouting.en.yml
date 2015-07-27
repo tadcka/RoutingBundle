@@ -1,0 +1,11 @@
+form:
+  redirect_route:
+    permanent: Permanent
+    uri: Uri
+    route_name: Route name
+  route:
+    pattern: Route pattern
+    visible: Visible
+  route_choice:
+    empty_value: Select
+    route_target: Route target

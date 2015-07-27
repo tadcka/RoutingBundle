@@ -19,7 +19,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Tadcka\Bundle\RoutingBundle\DependencyInjection\Compiler\ChainRouterPass;
 use Tadcka\Bundle\RoutingBundle\DependencyInjection\Compiler\DynamicRouterPass;
 use Tadcka\Bundle\RoutingBundle\DependencyInjection\Compiler\SymfonyRouterPass;
-use Tadcka\Bundle\RoutingBundle\DependencyInjection\Compiler\TranslatorConfigurationPass;
 
 /**
  * @author Tadas Gliaubicas <tadcka89@gmail.com>
@@ -38,7 +37,6 @@ class TadckaRoutingBundle extends Bundle
         $container->addCompilerPass(new ChainRouterPass());
         $container->addCompilerPass(new RegisterRoutersPass('tadcka_routing.chain_router'));
         $container->addCompilerPass(new RegisterRouteEnhancersPass('tadcka_routing.dynamic_router'));
-        $container->addCompilerPass(new TranslatorConfigurationPass());
 
         $this->addRegisterMappingsPass($container);
     }
