@@ -8,7 +8,7 @@
         <parameter key="tadcka_routing.provider.route.class">Tadcka\Component\Routing\Provider\RouteProvider</parameter>
         <parameter key="tadcka_routing.candidates.class">Symfony\Cmf\Component\Routing\Candidates\Candidates</parameter>
         <parameter key="tadcka_routing.generator.route.class">Tadcka\Component\Routing\Generator\RouteGenerator</parameter>
-        <parameter key="tadcka_routing.manager.route.in_memory">Tadcka\Component\Routing\Manager\InMemoryRouteManager</parameter>
+        <parameter key="tadcka_routing.manager.route.in_memory.class">Tadcka\Component\Routing\Manager\InMemoryRouteManager</parameter>
     </parameters>
 
     <services>
@@ -30,7 +30,7 @@
         </service>
 
         <!--Route manager in memory-->
-        <service id="tadcka_routing.manager.route.in_memory" class="%tadcka_routing.manager.route.in_memory%">
+        <service id="tadcka_routing.manager.route.in_memory" class="%tadcka_routing.manager.route.in_memory.class%">
             <argument type="service" id="tadcka_routing.manager.route.default" />
         </service>
 
