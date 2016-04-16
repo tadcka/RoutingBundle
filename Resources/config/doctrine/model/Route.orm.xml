@@ -16,6 +16,10 @@
 
     <mapped-superclass name="Tadcka\Component\Routing\Model\Route">
 
+        <indexes>
+            <index columns="name,visible" name="name_visible_idx" />
+        </indexes>
+
         <field name="name" column="name" type="string" length="255" nullable="false" unique="true" />
 
         <field name="routePattern" column="route_pattern" type="string" length="255" nullable="true" unique="true" />
