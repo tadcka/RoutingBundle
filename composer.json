@@ -14,7 +14,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
-        "symfony/framework-bundle" : ">=2.3",
+        "symfony/framework-bundle" : "~2.7|~3.0",
         "tadcka/routing": "~0.1"
     },
     "require-dev": {
@@ -24,7 +24,10 @@
     "autoload": {
         "psr-4": {
             "Tadcka\\Bundle\\RoutingBundle\\": ""
-        }
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
     },
     "extra": {
         "branch-alias": {

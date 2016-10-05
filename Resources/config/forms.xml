@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="tadcka_routing.form_data_transformer.route_choice.class">Tadcka\Bundle\RoutingBundle\Form\DataTransformer\RouteChoiceTransformer</parameter>
+        <parameter key="tadcka_routing.form_type.redirect_route.class">Tadcka\Bundle\RoutingBundle\Form\Type\RedirectRouteType</parameter>
+        <parameter key="tadcka_routing.form_type.route.class">Tadcka\Bundle\RoutingBundle\Form\Type\RouteType</parameter>
+        <parameter key="tadcka_routing.form_type.route_choice.class">Tadcka\Bundle\RoutingBundle\Form\Type\RouteChoiceType</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="tadcka_routing.form_data_transformer.route_choice" class="%tadcka_routing.form_data_transformer.route_choice.class%" public="false">
+            <argument type="service" id="tadcka_routing.manager.route" />
+        </service>
+
+        <!--Redirect route form type-->
+        <service id="tadcka_routing.form_type.redirect_route" class="%tadcka_routing.form_type.redirect_route.class%">
+            <tag name="form.type" alias="tadcka_redirect_route" />
+
+            <argument>%tadcka_routing.model.redirect_route.class%</argument>
+        </service>
+
+        <!--Route form type-->
+        <service id="tadcka_routing.form_type.route" class="%tadcka_routing.form_type.route.class%">
+            <tag name="form.type" alias="tadcka_route" />
+
+            <argument>%tadcka_routing.model.route.class%</argument>
+        </service>
+
+        <!--Route choice form type-->
+        <service id="tadcka_routing.form_type.route_choice" class="%tadcka_routing.form_type.route_choice.class%">
+            <tag name="form.type" alias="tadcka_route_choice" />
+
+            <argument type="service" id="tadcka_routing.form_data_transformer.route_choice" />
+            <argument type="service" id="tadcka_routing.manager.route" />
+            <argument>%tadcka_routing.model.route.class%</argument>
+        </service>
+
+    </services>
+
+</container>
