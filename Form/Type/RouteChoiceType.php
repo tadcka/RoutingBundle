@@ -13,7 +13,7 @@ namespace Tadcka\Bundle\RoutingBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tadcka\Component\Routing\Model\Manager\RouteManagerInterface;
 use TTadcka\Bundle\RoutingBundle\Form\DataTransformer\RouteChoiceTransformer;
 
@@ -67,7 +67,7 @@ class RouteChoiceType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             array(

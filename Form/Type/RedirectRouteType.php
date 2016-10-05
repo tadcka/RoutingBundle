@@ -13,7 +13,7 @@ namespace Tadcka\Bundle\RoutingBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -23,7 +23,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class RedirectRouteType extends AbstractType
 {
-
     /**
      * @var string
      */
@@ -86,12 +85,12 @@ class RedirectRouteType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             array(
-                'translation_domain' => 'TadckaRouting',
                 'data_class' => $this->redirectRouteClass,
+                'translation_domain' => 'TadckaRouting',
                 'use_route_target' => true,
             )
         );
