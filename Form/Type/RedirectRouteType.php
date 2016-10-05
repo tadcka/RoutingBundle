@@ -15,6 +15,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
+use Tadcka\Bundle\RoutingBundle\Form\Util\LegacyFormHelper;
 
 /**
  * @author Tadas Gliaubicas <tadcka89@gmail.com>
@@ -45,7 +46,7 @@ class RedirectRouteType extends AbstractType
     {
         $builder->add(
             'permanent',
-            'checkbox',
+            LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\CheckboxType'),
             array(
                 'label' => 'form.redirect_route.permanent',
                 'required' => false
@@ -54,7 +55,7 @@ class RedirectRouteType extends AbstractType
 
         $builder->add(
             'uri',
-            'text',
+            LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType'),
             array(
                 'label' => 'form.redirect_route.uri',
                 'constraints' => array(new Assert\Url()),
@@ -64,7 +65,7 @@ class RedirectRouteType extends AbstractType
 
         $builder->add(
             'routeName',
-            'text',
+            LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType'),
             array(
                 'label' => 'form.redirect_route.route_name',
                 'required' => false,
@@ -74,7 +75,7 @@ class RedirectRouteType extends AbstractType
         if ($options['use_route_target']) {
             $builder->add(
                 'routeTarget',
-                'tadcka_route_choice',
+                LegacyFormHelper::getType('Tadcka\Bundle\RoutingBundle\Form\Type\RouteChoiceType'),
                 array(
                     'required' => false,
                 )
@@ -97,9 +98,19 @@ class RedirectRouteType extends AbstractType
     }
 
     /**
+     * BC for SF < 3.0
+     *
      * {@inheritdoc}
      */
     public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'tadcka_redirect_route';
     }

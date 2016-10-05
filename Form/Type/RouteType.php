@@ -15,6 +15,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
+use Tadcka\Bundle\RoutingBundle\Form\Util\LegacyFormHelper;
 
 /**
  * @author Tadas Gliaubicas <tadcka89@gmail.com>
@@ -45,7 +46,7 @@ class RouteType extends AbstractType
     {
         $builder->add(
             'visible',
-            'checkbox',
+            LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\CheckboxType'),
             array(
                 'label' => 'form.route.visible',
                 'required' => false,
@@ -54,7 +55,7 @@ class RouteType extends AbstractType
 
         $builder->add(
             'routePattern',
-            'text',
+            LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType'),
             array(
                 'label' => 'form.route.pattern',
                 'constraints' => array(new Assert\NotBlank()),
@@ -77,9 +78,19 @@ class RouteType extends AbstractType
     }
 
     /**
+     * BC for SF < 3.0
+     * 
      * {@inheritdoc}
      */
     public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'tadcka_route';
     }

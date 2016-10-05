@@ -14,6 +14,7 @@ namespace Tadcka\Bundle\RoutingBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Tadcka\Bundle\RoutingBundle\Form\Util\LegacyFormHelper;
 use Tadcka\Component\Routing\Model\Manager\RouteManagerInterface;
 use TTadcka\Bundle\RoutingBundle\Form\DataTransformer\RouteChoiceTransformer;
 
@@ -99,13 +100,23 @@ class RouteChoiceType extends AbstractType
      */
     public function getParent()
     {
-        return 'choice';
+        return LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\ChoiceType');
+    }
+
+    /**
+     * BC for SF < 3.0
+     *
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'tadcka_route_choice';
     }
